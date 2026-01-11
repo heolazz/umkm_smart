@@ -1,0 +1,8 @@
+{
+  "name": "new UMKM Smart",
+  "description": "Platform pemberdayaan UMKM dengan fitur skoring interaktif, modul pembelajaran gamifikasi, dan generator video AI Veo.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

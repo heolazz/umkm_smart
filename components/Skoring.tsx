@@ -1,76 +1,69 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { MOCK_QUESTIONS, SEGMENTS } from '../constants';
 import { Button } from './Button';
-import { Check, ArrowLeft, ArrowRight, AlertCircle, TrendingUp, PieChart, Users, Target, Cog, Wallet, Package } from 'lucide-react';
+import { Check, ArrowLeft, ArrowRight, AlertCircle } from 'lucide-react';
 import { useNavigate } from '../App';
 
 interface SkoringProps {
   onComplete: () => void;
 }
 
-// --- KOMPONEN ILUSTRASI DINAMIS PER SEGMEN ---
+// --- KOMPONEN ILUSTRASI DENGAN VECTOR (PUBLIC FOLDER) ---
 const SegmentIllustration = ({ segmentId, mobile = false }: { segmentId: number, mobile?: boolean }) => {
   
-  // Helper untuk wrapper agar rapi
+  // --- PERBAIKAN DI SINI ---
+  // Mapping disesuaikan dengan file yang ada di gambar kamu
+  const ICON_MAPPING: Record<number, string> = {
+    1: "vector_skala_usaha.png",        // ID 1: Skala Usaha
+    2: "vector_kepemimpinan.png",       // ID 2: Kepemimpinan
+    3: "vector_budaya.png",             // ID 3: Budaya Inovasi
+    4: "vector_m_pemasaran.png",        // ID 4: Manajemen Pemasaran
+    5: "vector_m_operasional.png",      // ID 5: Manajemen Operasional
+    6: "vector_m_keuangan.png",         // ID 6: Manajemen Keuangan
+    7: "vector_m_sdm.png",              // ID 7: Manajemen SDM
+    8: "vector_legalitas.png",          // ID 8: Legalitas & Kepatuhan
+    9: "vector_kepedulian.png",         // ID 9: Kepedulian Sosial
+    10: "vector_pemahaman_industri.png",// ID 10: Pemahaman Industri
+    11: "vector_m_rantai_pasok.png",    // ID 11: Manajemen Rantai Pasok
+  };
+
+  // Fallback jika file belum diset
+  const fileName = ICON_MAPPING[segmentId] || "default_vector.png";
+  
+  // Pastikan path folder di public adalah /vector/
+  const iconSrc = `/vector/${fileName}`;
+
   const Wrapper = ({ children }: { children: React.ReactNode }) => {
-    if (mobile) return <div className="flex items-center justify-center w-16 h-16">{children}</div>;
+    if (mobile) {
+      return (
+        <div className="flex items-center justify-center w-14 h-14 overflow-hidden">
+          {children}
+        </div>
+      );
+    }
     return (
-      <div className="relative w-48 h-48 flex items-center justify-center mx-auto mb-6 bg-white/50 rounded-full shadow-inner border border-white/60 backdrop-blur-sm">
+      <div className="relative w-48 h-48 flex items-center justify-center mx-auto mb-6 bg-white/50 rounded-full shadow-inner border border-white/60 backdrop-blur-sm p-4">
         {children}
       </div>
     );
   };
 
-  // Render konten berdasarkan ID Segmen
-  const renderContent = () => {
-    switch (segmentId) {
-      case 1: // Skala Usaha (Bar Chart)
-        return (
-          <div className={`flex items-end gap-1.5 ${mobile ? 'h-10' : 'h-24'}`}>
-            <div className={`${mobile ? 'w-2 h-6' : 'w-6 h-12'} bg-blue-300 rounded-t-sm`}></div>
-            <div className={`${mobile ? 'w-2 h-8' : 'w-6 h-20'} bg-blue-500 rounded-t-sm`}></div>
-            <div className={`${mobile ? 'w-2 h-10' : 'w-6 h-28'} bg-orange-500 rounded-t-sm flex items-start justify-center pt-1`}>
-               {!mobile && <TrendingUp className="w-4 h-4 text-white" />}
-            </div>
-          </div>
-        );
-      case 2: // Keuangan (Pie/Wallet)
-        return mobile ? <Wallet className="text-orange-500 w-8 h-8" /> : (
-            <div className="relative">
-                <div className="w-24 h-24 rounded-full border-[12px] border-blue-100 border-t-orange-500 border-r-orange-500 transform rotate-45 shadow-lg"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <PieChart className="w-10 h-10 text-blue-600" />
-                </div>
-            </div>
-        );
-      case 3: // Pemasaran (Target)
-        return mobile ? <Target className="text-red-500 w-8 h-8" /> : (
-            <div className="relative flex items-center justify-center">
-                <div className="w-28 h-28 bg-red-100 rounded-full flex items-center justify-center shadow-sm">
-                    <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center border-4 border-red-500">
-                        <div className="w-8 h-8 bg-red-500 rounded-full"></div>
-                    </div>
-                </div>
-                <Target className="absolute -right-4 -top-4 w-10 h-10 text-blue-600 drop-shadow-md" />
-            </div>
-        );
-      case 4: // Operasional (Gear)
-        return mobile ? <Cog className="text-slate-600 w-8 h-8" /> : (
-            <div className="relative">
-               <Cog className="w-28 h-28 text-slate-200 animate-spin-slow" style={{animationDuration: '10s'}} />
-               <Cog className="w-16 h-16 text-blue-500 absolute -bottom-2 -right-2 animate-spin-slow" style={{animationDirection: 'reverse'}} />
-            </div>
-        );
-      default: // Default (Package/General)
-        return mobile ? <Package className="text-blue-500 w-8 h-8" /> : (
-           <div className="bg-blue-50 p-6 rounded-3xl">
-              <Package className="w-20 h-20 text-blue-500" />
-           </div>
-        );
-    }
-  };
-
-  return <Wrapper>{renderContent()}</Wrapper>;
+  return (
+    <Wrapper>
+      <img 
+        src={iconSrc} 
+        alt={`Ilustrasi Segmen ${segmentId}`}
+        className={`object-contain transition-all duration-300 hover:scale-105 
+          ${mobile ? 'w-full h-full' : 'w-32 h-32'} 
+        `}
+        onError={(e) => {
+          // Sembunyikan gambar jika file tidak ditemukan agar tidak terlihat icon 'broken image'
+          console.error(`Gagal memuat gambar: ${iconSrc}`);
+          e.currentTarget.style.display = 'none'; 
+        }}
+      />
+    </Wrapper>
+  );
 };
 
 export const Skoring: React.FC<SkoringProps> = ({ onComplete }) => {
@@ -82,16 +75,15 @@ export const Skoring: React.FC<SkoringProps> = ({ onComplete }) => {
   const [answers, setAnswers] = useState<Record<number, any>>({}); 
 
   // Get Data Current Segment
-  const currentSegment = SEGMENTS[activeSegmentIndex];
+  const currentSegment = SEGMENTS[activeSegmentIndex] || SEGMENTS[0];
   
   // Filter pertanyaan HANYA untuk segmen ini
   const questionsInSegment = MOCK_QUESTIONS.filter(q => q.segmentId === currentSegment.id);
 
-  // Hitung Progress Global (Berdasarkan jumlah segmen yang selesai)
+  // Hitung Progress Global
   const progress = Math.round(((activeSegmentIndex) / SEGMENTS.length) * 100);
 
   // --- LOGIC VALIDASI ---
-  // Cek apakah semua pertanyaan di segmen ini sudah dijawab
   const isSegmentComplete = () => {
     return questionsInSegment.every(q => {
         const ans = answers[q.id];
@@ -173,7 +165,7 @@ export const Skoring: React.FC<SkoringProps> = ({ onComplete }) => {
                         </span>
                     </div>
 
-                    {/* Ilustrasi Dinamis sesuai Segmen ID */}
+                    {/* Ilustrasi Dinamis dari Vector */}
                     <SegmentIllustration segmentId={currentSegment.id} />
 
                     <h2 className="text-3xl font-black text-[#0857C3] tracking-tight mb-4">

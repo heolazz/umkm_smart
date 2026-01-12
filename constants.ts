@@ -405,7 +405,7 @@ export const MOCK_REGULAR_MODULES: RegularModule[] = [
     type: 'lesson',
     summary: 'Pelajari cara memisahkan uang pribadi dan usaha, serta teknik mencatat pemasukan dan pengeluaran harian di buku kas.',
     pdfUrl: '#',
-    videoUrl: 'https://www.youtube.com/embed/zpOULjyy-n8',
+    videoUrl: 'https://www.youtube.com/embed/ScMzIvxBSi4',
     rating: 4.9,
     reviewsCount: 89,
     comments: [

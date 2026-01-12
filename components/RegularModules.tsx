@@ -356,7 +356,7 @@ export const RegularModules: React.FC = () => {
                 {/* --- SIDEBAR REKOMENDASI --- */}
                 <div className="lg:col-span-4 space-y-8 sticky top-24">
                     <div className="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-lg shadow-slate-200/50">
-                        <div className="mb-6"><h3 className="font-bold text-slate-800 text-lg mb-1">Rekomendasi Topik</h3><p className="text-xs text-slate-400 font-medium">Berdasarkan skor terendah Anda</p></div>
+                        <div className="mb-6"><h3 className="font-bold text-slate-800 text-lg mb-1">Rekomendasi Modul</h3><p className="text-xs text-slate-400 font-medium">Berdasarkan hasil skoring terendah Anda</p></div>
                         {recommendations.map((rec, idx) => <RecommendationCard key={idx} {...rec} />)}
                     </div>
                 </div>

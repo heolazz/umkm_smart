@@ -15,7 +15,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick, index = 0 }) 
 
   const styles = isDarkTheme 
     ? {
-        container: 'bg-[#004E92]', // Dark Blue
+        container: 'bg-[#0857C3]', // Dark Blue
         pill: 'bg-black/20 text-white border-white/10',
         accentLine: 'bg-[#A3C5E9]',
         iconColor: 'text-white/10'

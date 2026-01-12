@@ -19,10 +19,7 @@ const HeroSection: React.FC<{ completed: number; total: number; level: string }>
 
     return (
         <div className="mb-12 relative">
-             {/* Main Container: 
-                Menggunakan warna solid deep blue (#0857C3) agar lebih 'clean' daripada gradient yang ramai.
-                Rounded corners yang besar memberikan kesan modern.
-            */}
+             {/* Main Container:*/}
             <div className="bg-[#0857C3] rounded-[2.5rem] p-8 md:p-12 overflow-hidden shadow-xl shadow-blue-900/10 relative">
                 
                 {/* Subtle Background Decor: 

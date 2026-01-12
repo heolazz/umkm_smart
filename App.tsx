@@ -84,12 +84,9 @@ const App: React.FC = () => {
               {/* Logo - Klik mengarah ke Modul Reguler (Home baru) */}
               <div className="flex items-center cursor-pointer gap-2 group" onClick={() => navigate('modul-reguler')}>
                 <div className="flex items-baseline tracking-tight select-none">
-                  <span className="text-3xl font-extrabold text-[#0857C3] tracking-tighter">link</span>
-                  <span className="text-3xl font-extrabold text-[#307FE2] tracking-tighter">umkm</span>
+                  <span className="text-3xl font-bold text-[#0857C3] tracking-tighter">link</span>
+                  <span className="text-3xl font-bold text-[#307FE2] tracking-tighter">umkm</span>
                 </div>
-                <span className="ml-2 px-2 py-0.5 rounded-md bg-[#F5FAFF] group-hover:bg-[#71C5E8]/20 transition-colors text-[10px] font-bold text-[#0857C3]/70 group-hover:text-[#0857C3] uppercase tracking-widest border border-[#71C5E8]/30">
-                  Smart
-                </span>
               </div>
               
               {/* Desktop Nav */}

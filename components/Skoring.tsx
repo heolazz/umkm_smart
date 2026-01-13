@@ -254,7 +254,7 @@ export const Skoring: React.FC<SkoringProps> = ({ onComplete }) => {
                                 <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 block">
                                     Pertanyaan {index + 1} dari {questionsInSegment.length}
                                 </span>
-                                <h3 className="text-lg md:text-xl font-bold text-slate-900 leading-snug">
+                                <h3 className="text-xl md:text-3xl font-semibold text-slate-900 leading-snug">
                                     {q.text}
                                 </h3>
                                 {q.type === 'multiple' && (

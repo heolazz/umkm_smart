@@ -131,7 +131,7 @@ export const MOCK_QUESTIONS: Question[] = [
   { 
     id: 402, 
     segmentId: 4, 
-    text: 'Di era digital ini, saya melakukan pemasaran online untuk memperluas pasar dan memudahkan transaksi: (Anda bisa memilih lebih dari 1 jawaban)',
+    text: 'Di era digital ini, saya melakukan pemasaran online untuk memperluas pasar dan memudahkan transaksi: ',
     type: 'multiple',
     options: [
       { label: 'Menggunakan media sosial (Facebook, Twitter, Instagram, dll)', value: 'medsos' },
@@ -178,7 +178,7 @@ export const MOCK_QUESTIONS: Question[] = [
   { 
     id: 501, 
     segmentId: 5, 
-    text: 'Untuk memastikan proses produksi/pelayanan berjalan baik dan sesuai standar kualitas, saya melakukan hal berikut: (Anda bisa memilih lebih dari 1 jawaban)',
+    text: 'Untuk memastikan proses produksi/pelayanan berjalan baik dan sesuai standar kualitas, saya melakukan hal berikut:',
     type: 'multiple',
     options: [
       { label: 'Membuat prosedur tertulis untuk proses produksi dan kegiatan langsung dengan konsumen', value: 'sop' },
@@ -258,7 +258,7 @@ export const MOCK_QUESTIONS: Question[] = [
   { 
     id: 801, 
     segmentId: 8, 
-    text: 'Usaha saya sudah memiliki legalitas berikut: (Anda bisa memilih lebih dari 1 jawaban)',
+    text: 'Usaha saya sudah memiliki legalitas berikut: ',
     type: 'multiple',
     options: [
       { label: 'Nomor Induk Berusaha (NIB) dari OSS Republik Indonesia', value: 'nib' },
@@ -270,7 +270,7 @@ export const MOCK_QUESTIONS: Question[] = [
   { 
     id: 802, 
     segmentId: 8, 
-    text: 'Saya telah melakukan upaya pemenuhan kewajiban berikut: (Anda bisa memilih lebih dari 1 jawaban)',
+    text: 'Saya telah melakukan upaya pemenuhan kewajiban berikut:',
     type: 'multiple',
     options: [
       { label: 'NPWP atas nama badan usaha', value: 'npwp' },
@@ -285,7 +285,7 @@ export const MOCK_QUESTIONS: Question[] = [
   { 
     id: 901, 
     segmentId: 9, 
-    text: 'Usaha saya telah melakukan langkah tanggung jawab dan peduli lingkungan/sosial, diantaranya: (Anda bisa memilih lebih dari 1 jawaban)',
+    text: 'Usaha saya telah melakukan langkah tanggung jawab dan peduli lingkungan/sosial, diantaranya: ',
     type: 'multiple',
     options: [
       { label: 'Memastikan agar karyawan tetap digaji sesuai peraturan Upah Minimum setempat', value: 'umr' },
@@ -313,7 +313,7 @@ export const MOCK_QUESTIONS: Question[] = [
   { 
     id: 1002, 
     segmentId: 10, 
-    text: 'Saya memantau keunggulan dan kelemahan produk sejenis di pasaran, dengan cara: (Anda bisa memilih lebih dari 1 jawaban)',
+    text: 'Saya memantau keunggulan dan kelemahan produk sejenis di pasaran, dengan cara: ',
     type: 'multiple',
     options: [
       { label: 'Tahu nama-nama atau merek produk sejenis yang ada di pasaran', value: 'know_brand' },
@@ -349,7 +349,7 @@ export const MOCK_QUESTIONS: Question[] = [
   { 
     id: 1103, 
     segmentId: 11, 
-    text: 'Saya sudah membangun pondasi cadangan kas dan relasi pendanaan: (Anda bisa memilih lebih dari 1 jawaban)',
+    text: 'Saya sudah membangun pondasi cadangan kas dan relasi pendanaan:',
     type: 'multiple',
     options: [
       { label: 'Saldo cadangan kas usaha saat ini > total biaya operasional untuk 6 bulan', value: 'cash' },
@@ -363,7 +363,7 @@ export const MOCK_QUESTIONS: Question[] = [
   { 
     id: 1104, 
     segmentId: 11, 
-    text: 'Usaha saya didukung dengan fasilitas atau peralatan IT berikut: (Anda bisa memilih lebih dari 1 jawaban)',
+    text: 'Usaha saya didukung dengan fasilitas atau peralatan IT berikut: ',
     type: 'multiple',
     options: [
       { label: 'Akses internet yang handal (24 jam)', value: 'internet' },

@@ -153,7 +153,7 @@ const RecommendationCard: React.FC<{ title: string; score: number; status: 'PRIO
             {/* Progress Bar & Button */}
             <div className="space-y-3">
                 <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider">
-                    <span className="text-slate-400">Gap Kompetensi</span>
+                    <span className="text-slate-400">Saat ini</span>
                     <span className={config.chipText}>Target : 5.0</span>
                 </div>
                 

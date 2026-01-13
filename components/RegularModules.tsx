@@ -2,91 +2,83 @@ import React, { useState, useMemo } from 'react';
 import { MOCK_REGULAR_MODULES } from '../constants';
 import { BookCard } from './BookCard';
 import { 
-  Lock, Check, Play, ChevronRight, Video, 
+  Lock, Check, ChevronRight,
   Star, FileText, X, ArrowLeft, 
-  Search, Filter, LayoutGrid, Info, BookOpen, Layers, 
-  Trophy, Target, Sparkles, Lightbulb
+  Search, BookOpen, Layers
 } from 'lucide-react';
-import { RegularModule, UMKMLevel } from '../types';
+import { RegularModule } from '../types';
 import { Button } from './Button';
 
-// --- SUB-COMPONENTS (Timeline, Recommendation, & NEW HERO) ---
-
-// 1. NEW HERO SECTION (Banner yang Di-improve)
+// 1. HERO SECTION (UPDATED: White Theme & Scoring Vibe)
 const HeroSection: React.FC<{ completed: number; total: number; level: string }> = ({ completed, total, level }) => {
-    // Hitung persentase progress
     const progressPercentage = total > 0 ? Math.round((completed / total) * 100) : 0;
 
     return (
         <div className="mb-12 relative">
-             {/* Main Container:*/}
-            <div className="bg-[#0857C3] rounded-[2.5rem] p-8 md:p-12 overflow-hidden shadow-xl shadow-blue-900/10 relative">
+             {/* Main Container: Background White, Border & Shadow halus dengan palet #DBEBF6 */}
+            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 overflow-hidden shadow-xl shadow-[#DBEBF6]/60 border border-[#DBEBF6] relative">
                 
-                {/* Subtle Background Decor: 
-                    Hanya satu cahaya lembut dari kanan atas untuk memberikan kedalaman tanpa terlihat ramai.
-                */}
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-white/10 via-transparent to-transparent pointer-events-none opacity-60 -mt-32 -mr-32 rounded-full blur-3xl"></div>
+                {/* Background Decor: Soft Blobs menggunakan #DBEBF6 */}
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#DBEBF6] pointer-events-none opacity-40 -mt-20 -mr-20 rounded-full blur-[80px]"></div>
+                <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#DBEBF6] pointer-events-none opacity-30 -mb-20 -ml-20 rounded-full blur-[60px]"></div>
 
-                {/* Content Wrapper: Flex column di mobile, row di desktop */}
                 <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
                     
-                    {/* LEFT SIDE: Main Messaging & Level */}
+                    {/* LEFT SIDE: Teks Kontras di atas Putih */}
                     <div className="max-w-2xl flex-1 space-y-6">
-                        {/* Level Badge - Cleaner Look */}
-                        <div className="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm text-blue-100 font-medium transition-transform hover:scale-105 cursor-default">
-                            <div className="p-1 bg-[#FFD700] rounded-full shadow-sm">
-                            </div>
-                            <span>Level Saat Ini: <span className="text-white font-bold tracking-wide ml-1">{level}</span></span>
+                        {/* Level Badge: Light Blue Background */}
+                        <div className="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 rounded-full bg-[#F0F9FF] border border-[#DBEBF6] text-sm text-[#0857C3] font-bold transition-transform hover:scale-105 cursor-default">
+                            <div className="p-1 bg-[#FFD700] rounded-full shadow-sm"></div>
+                            <span>Level Saat Ini: <span className="text-[#0857C3] font-black tracking-wide ml-1">{level}</span></span>
                         </div>
 
-                        {/* Headline - Besar, Jelas, Minimalis */}
                         <div>
-                            <h1 className="text-4xl md:text-5xl font-black text-white leading-tight tracking-tight mb-4">
+                            {/* Headline: Brand Blue */}
+                            <h1 className="text-4xl md:text-5xl font-black text-[#0857C3] leading-tight tracking-tight mb-4">
                                 Bangun Fondasi <br className="hidden md:block"/>
                                 Bisnis yang Kuat.
                             </h1>
-                            <p className="text-blue-100 text-base md:text-lg leading-relaxed max-w-lg opacity-90 font-medium">
+                            {/* Subtext: Slate Grey agar rapi */}
+                            <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-lg font-medium">
                                 Selesaikan modul pembelajaran terstruktur untuk meningkatkan kompetensi usaha Anda.
                             </p>
                         </div>
                     </div>
 
-                    {/* RIGHT SIDE: Consolidated Progress Card */}
-                    {/* Di mobile dia akan mengambil lebar penuh, di desktop dia punya lebar tetap */}
+                    {/* RIGHT SIDE: Progress Card (Clean Style) */}
                     <div className="w-full lg:w-auto flex-shrink-0 z-20">
-                        <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 border border-white/20 w-full lg:min-w-[340px] shadow-lg shadow-blue-900/5">
+                        {/* Card Background White/Glassy dengan Border #DBEBF6 */}
+                        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 border border-[#DBEBF6] w-full lg:min-w-[340px] shadow-lg shadow-[#DBEBF6]/40">
                             <div className="flex items-center justify-between mb-5">
                                 <div>
-                                    <h3 className="text-white font-bold text-base mb-0.5 flex items-center gap-2">
+                                    <h3 className="text-[#0857C3] font-bold text-base mb-0.5 flex items-center gap-2">
                                          Progress Belajar
                                     </h3>
-                                    <p className="text-xs text-blue-200">Penyelesaian</p>
+                                    <p className="text-xs text-slate-400">Penyelesaian</p>
                                 </div>
-                                <span className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#56CCF2] to-white">
+                                <span className="text-4xl font-black text-[#0857C3]">
                                     {progressPercentage}%
                                 </span>
                             </div>
 
-                            {/* Cleaner Progress Bar */}
-                            <div className="h-3 w-full bg-black/20 rounded-full overflow-hidden mb-4 p-0.5">
+                            {/* Progress Bar: Base #DBEBF6, Fill #0857C3 */}
+                            <div className="h-3 w-full bg-[#DBEBF6] rounded-full overflow-hidden mb-4 p-0.5">
                                 <div 
-                                    className="h-full bg-gradient-to-r from-[#56CCF2] via-[#307FE2] to-[#0857C3] rounded-full transition-all duration-1000 ease-out relative" 
+                                    className="h-full bg-[#0857C3] rounded-full transition-all duration-1000 ease-out relative" 
                                     style={{ width: `${progressPercentage}%` }}
                                 >
-                                     {/* Shimmer effect pada bar */}
-                                    <div className="absolute inset-0 w-full h-full bg-white/20 animate-shimmer" style={{backgroundSize: '200% 100%', backgroundImage: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)'}}></div>
                                 </div>
                             </div>
 
-                            {/* Simple Stats Counter */}
-                            <div className="flex items-center justify-between text-sm font-medium text-blue-100 bg-blue-900/20 py-2 px-3 rounded-xl">
+                            {/* Stats: Light Blue Container */}
+                            <div className="flex items-center justify-between text-sm font-medium text-[#0857C3] bg-[#F0F9FF] py-2 px-3 rounded-xl border border-[#DBEBF6]">
                                 <div className="flex items-center gap-2">
-                                    <div className="w-2 h-2 rounded-full bg-[#56CCF2]"></div>
-                                    <span><span className="text-white font-bold text-base">{completed}</span> Selesai</span>
+                                    <div className="w-2 h-2 rounded-full bg-[#307FE2]"></div>
+                                    <span><span className="font-black text-base">{completed}</span> Selesai</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                     <span className="text-white/30">dari</span>
-                                    <span><span className="text-white font-bold text-base">{total}</span> Modul</span>
+                                     <span className="text-slate-400">dari</span>
+                                    <span><span className="font-black text-base">{total}</span> Modul</span>
                                 </div>
                             </div>
                         </div>
@@ -98,10 +90,9 @@ const HeroSection: React.FC<{ completed: number; total: number; level: string }>
     );
 };
 
-// 2. RECOMMENDATION CARD
+// 2. RECOMMENDATION CARD (Disesuaikan sedikit agar senada)
 const RecommendationCard: React.FC<{ title: string; score: number; status: 'PRIORITAS' | 'PENTING' | 'AMAN' }> = ({ title, score, status }) => {
     
-    // Konfigurasi Warna Baru (Blue Palette)
     const statusConfig = {
         'PRIORITAS': { 
             chipBg: 'bg-[#0857C3]/10', 
@@ -136,7 +127,6 @@ const RecommendationCard: React.FC<{ title: string; score: number; status: 'PRIO
 
     return (
         <div className={`bg-white rounded-2xl p-5 border shadow-sm mb-4 transition-all hover:shadow-md ${config.border}`}>
-            {/* Header Card */}
             <div className="flex justify-between items-start mb-4">
                 <div>
                     <h4 className="font-bold text-slate-800 text-sm mb-2 leading-tight">{title}</h4>
@@ -144,13 +134,11 @@ const RecommendationCard: React.FC<{ title: string; score: number; status: 'PRIO
                         {status}
                     </span>
                 </div>
-                {/* Score Circle */}
                 <div className={`w-9 h-9 rounded-xl flex items-center justify-center text-xs font-black shadow-sm ${config.scoreBg} ${config.scoreText}`}>
                     {score}
                 </div>
             </div>
 
-            {/* Progress Bar & Button */}
             <div className="space-y-3">
                 <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider">
                     <span className="text-slate-400">Saat ini</span>
@@ -169,7 +157,7 @@ const RecommendationCard: React.FC<{ title: string; score: number; status: 'PRIO
     );
 };
 
-// 3. TIMELINE ITEM (CATEGORY GROUP)
+// 3. TIMELINE ITEM
 const CategoryTimelineItem: React.FC<{ 
     categoryName: string; 
     modules: RegularModule[]; 
@@ -180,7 +168,6 @@ const CategoryTimelineItem: React.FC<{
     const totalModules = modules.length;
     const completedModules = modules.filter(m => m.status === 'completed').length;
     const isCompleted = totalModules > 0 && totalModules === completedModules;
-    // Logic: Unlocked if at least one module is unlocked/completed (Demo logic)
     const isLocked = modules.every(m => m.status === 'locked'); 
     const progressPercent = totalModules > 0 ? (completedModules / totalModules) * 100 : 0;
 
@@ -239,23 +226,18 @@ const CategoryTimelineItem: React.FC<{
 // --- MAIN COMPONENT ---
 
 export const RegularModules: React.FC = () => {
-    // State
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [selectedModule, setSelectedModule] = useState<RegularModule | null>(null);
     const [activeTab, setActiveTab] = useState<'summary' | 'pdf'>('summary');
     const [newComment, setNewComment] = useState('');
     const [userRating, setUserRating] = useState(0);
 
-    // Data Processing: Grouping Modules by Level then Category
     const learningPath = useMemo(() => {
         const levels = ['Tradisional', 'Tradisional Utama', 'Tradisional Teladan', 'Berkembang'];
-        
         return levels.map(level => {
             const modulesInLevel = MOCK_REGULAR_MODULES.filter(m => m.level === level);
             if (modulesInLevel.length === 0) return null;
-
             const categories = Array.from(new Set(modulesInLevel.map(m => m.category)));
-            
             return {
                 levelName: level,
                 categories: categories.map(cat => ({
@@ -266,7 +248,6 @@ export const RegularModules: React.FC = () => {
         }).filter(Boolean);
     }, []);
 
-    // Stats
     const totalModules = MOCK_REGULAR_MODULES.length;
     const completedCount = MOCK_REGULAR_MODULES.filter(m => m.status === 'completed').length;
 
@@ -280,7 +261,6 @@ export const RegularModules: React.FC = () => {
         ? MOCK_REGULAR_MODULES.filter(m => m.category === selectedCategory) 
         : [];
 
-    // --- HANDLERS ---
     const handleCategoryClick = (categoryName: string) => {
         setSelectedCategory(categoryName);
         setSelectedModule(null);
@@ -307,8 +287,6 @@ export const RegularModules: React.FC = () => {
     return (
         <div className="max-w-7xl mx-auto pb-20 animate-in fade-in duration-500">
             
-            {/* --- NEW HERO SECTION --- */}
-            {/* Menggantikan Header Lama */}
             <HeroSection 
                 completed={completedCount} 
                 total={totalModules} 
@@ -317,7 +295,6 @@ export const RegularModules: React.FC = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                 
-                {/* --- TIMELINE (LEARNING PATH) --- */}
                 <div className="lg:col-span-8 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-xl shadow-slate-200/50 min-h-[600px] relative overflow-hidden">
                     <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-slate-50 -z-10"></div>
                     
@@ -326,14 +303,12 @@ export const RegularModules: React.FC = () => {
                         
                         return (
                             <div key={lvlGroup.levelName} className="mb-16 last:mb-0">
-                                {/* Level Label */}
                                 <div className="flex justify-center mb-12 relative z-10">
                                     <span className={`px-6 py-2 rounded-full text-xs font-extrabold uppercase tracking-widest border shadow-sm ${lvlIdx === 0 ? 'bg-[#F0F9FF] text-[#0857C3] border-[#BAE6FD]' : 'bg-slate-50 text-slate-400 border-slate-200'}`}>
                                         {lvlGroup.levelName}
                                     </span>
                                 </div>
 
-                                {/* Category Items */}
                                 <div>
                                     {lvlGroup.categories.map((cat, idx) => (
                                         <CategoryTimelineItem 
@@ -350,7 +325,6 @@ export const RegularModules: React.FC = () => {
                     })}
                 </div>
 
-                {/* --- SIDEBAR REKOMENDASI --- */}
                 <div className="lg:col-span-4 space-y-8 sticky top-24">
                     <div className="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-lg shadow-slate-200/50">
                         <div className="mb-6"><h3 className="font-bold text-slate-800 text-lg mb-1">Rekomendasi Modul</h3><p className="text-xs text-slate-400 font-medium">Berdasarkan hasil skoring terendah Anda</p></div>
@@ -359,15 +333,12 @@ export const RegularModules: React.FC = () => {
                 </div>
             </div>
 
-            {/* --- MODAL POPUP (KATALOG & DETAIL) --- */}
             {(selectedCategory || selectedModule) && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-6 bg-[#0F172A]/80 backdrop-blur-md animate-in fade-in duration-300">
                     <div className="bg-[#F8FAFC] w-full max-w-6xl h-full md:h-[90vh] md:rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col relative animate-in zoom-in-95 duration-300 border border-white/10 ring-1 ring-white/10">
                         
-                        {/* 1. VIEW DETAIL MODUL (VIDEO/MATERI) */}
                         {selectedModule ? (
                             <div className="flex flex-col h-full overflow-hidden bg-white">
-                                {/* Header Detail */}
                                 <div className="p-5 md:p-8 border-b border-slate-100 flex justify-between items-start shrink-0 bg-white/90 backdrop-blur-md z-20 sticky top-0">
                                     <div className="flex gap-4 items-center">
                                         <button onClick={handleBackToGrid} className="p-2 -ml-2 rounded-full hover:bg-slate-100 text-slate-500 hover:text-[#0857C3] transition-colors"><ArrowLeft className="w-6 h-6" /></button>
@@ -380,7 +351,6 @@ export const RegularModules: React.FC = () => {
                                     <button onClick={handleCloseModal} className="p-2 rounded-full bg-slate-100 hover:bg-red-50 hover:text-red-500 text-slate-500 transition-colors"><X className="w-5 h-5" /></button>
                                 </div>
 
-                                {/* Content Body */}
                                 <div className="flex-1 overflow-y-auto custom-scrollbar">
                                     <div className="px-6 md:px-12 pt-6 border-b border-slate-100 bg-white sticky top-0 z-10">
                                         <div className="flex gap-8">
@@ -424,7 +394,6 @@ export const RegularModules: React.FC = () => {
                             </div>
                         ) : (
                             
-                            /* 2. VIEW CATALOG GRID (Saat Kategori diklik) */
                             <div className="flex flex-col h-full relative overflow-hidden bg-[#F1F5F9]">
                                 <div className="relative bg-[#0857C3] p-8 md:p-10 shrink-0 overflow-hidden shadow-md z-10">
                                     <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -mr-20 -mt-20"></div>

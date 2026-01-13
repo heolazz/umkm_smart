@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { MOCK_QUESTIONS, SEGMENTS } from '../constants';
 import { Button } from './Button';
-import { Check, ArrowLeft, ArrowRight, AlertCircle } from 'lucide-react';
+import { Check, ArrowLeft, ArrowRight, AlertCircle, ListChecks } from 'lucide-react';
 import { useNavigate } from '../App';
 
 interface SkoringProps {
@@ -258,9 +258,13 @@ export const Skoring: React.FC<SkoringProps> = ({ onComplete }) => {
                                     {q.text}
                                 </h3>
                                 {q.type === 'multiple' && (
-                                    <span className="inline-block mt-2 text-xs font-medium text-[#F97316] bg-[#FFF7ED] px-2 py-1 rounded">
-                                        Pilih boleh lebih dari satu
-                                    </span>
+                                <span className="inline-flex items-center gap-1.5 mt-2 text-xs font-medium text-[#F97316] bg-[#FFF7ED] px-2.5 py-1 rounded-md border border-[#FFEDD5]">
+                                    {/* Ikon Lucide (warnanya akan otomatis mengikuti text-color parent-nya) */}
+                                    <ListChecks className="w-3.5 h-3.5" />
+                                    
+                                    {/* Teks Label */}
+                                    <span>Pilih satu atau lebih jawaban</span>
+                                </span>
                                 )}
                             </div>
 

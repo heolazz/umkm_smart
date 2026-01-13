@@ -390,6 +390,7 @@ export const MOCK_REGULAR_MODULES: RegularModule[] = [
     videoUrl: 'https://www.youtube.com/embed/ScMzIvxBSi4', // Dummy
     rating: 4.8,
     reviewsCount: 124,
+    date: '12 Jan 2026', // ADDED DATE
     comments: [
       { id: 'c1', user: 'Budi Santoso', avatar: 'BS', date: '2 hari lalu', text: 'Sangat membantu untuk pemula seperti saya. Videonya jelas!', rating: 5 },
       { id: 'c2', user: 'Siti Aminah', avatar: 'SA', date: '1 minggu lalu', text: 'Penjelasannya runut, tapi audionya agak kecil.', rating: 4 }
@@ -408,6 +409,7 @@ export const MOCK_REGULAR_MODULES: RegularModule[] = [
     videoUrl: 'https://www.youtube.com/embed/ScMzIvxBSi4',
     rating: 4.9,
     reviewsCount: 89,
+    date: '14 Juli 2025', // ADDED DATE
     comments: [
         { id: 'c3', user: 'Rahmat Hidayat', avatar: 'RH', date: '3 hari lalu', text: 'Akhirnya paham bedanya omzet dan profit bersih.', rating: 5 }
     ]
@@ -420,7 +422,7 @@ export const MOCK_REGULAR_MODULES: RegularModule[] = [
     status: 'locked', // Keep locked until module 2 is done (in logic)
     progress: 0,
     type: 'post-test',
-    rating: 0, reviewsCount: 0, comments: []
+    rating: 0, reviewsCount: 0, date: '15 Jan 2026', comments: [] // ADDED DATE
   },
   
   // Level: Tradisional Utama
@@ -434,7 +436,7 @@ export const MOCK_REGULAR_MODULES: RegularModule[] = [
     type: 'lesson',
     summary: 'Pengenalan media sosial untuk bisnis. Cara membuat akun bisnis di Instagram dan Facebook serta teknik fotografi produk sederhana.',
     pdfUrl: '#',
-    rating: 0, reviewsCount: 0, comments: []
+    rating: 0, reviewsCount: 0, date: '20 Jan 2026', comments: [] // ADDED DATE
   },
   { 
     id: '4', 
@@ -446,7 +448,7 @@ export const MOCK_REGULAR_MODULES: RegularModule[] = [
     type: 'lesson',
     summary: 'Pentingnya Standar Operasional Prosedur (SOP) untuk menjaga kualitas produk tetap konsisten.',
     pdfUrl: '#',
-    rating: 0, reviewsCount: 0, comments: []
+    rating: 0, reviewsCount: 0, date: '22 Jan 2026', comments: [] // ADDED DATE
   },
   {
     id: 'pt-2',
@@ -456,7 +458,7 @@ export const MOCK_REGULAR_MODULES: RegularModule[] = [
     status: 'locked',
     progress: 0,
     type: 'post-test',
-    rating: 0, reviewsCount: 0, comments: []
+    rating: 0, reviewsCount: 0, date: '23 Jan 2026', comments: [] // ADDED DATE
   },
 
   // Level: Tradisional Teladan
@@ -470,7 +472,7 @@ export const MOCK_REGULAR_MODULES: RegularModule[] = [
     type: 'lesson',
     summary: 'Membangun identitas merek yang kuat melalui logo, warna, dan gaya komunikasi yang konsisten.',
     pdfUrl: '#',
-    rating: 0, reviewsCount: 0, comments: []
+    rating: 0, reviewsCount: 0, date: '01 Feb 2026', comments: [] // ADDED DATE
   },
   {
     id: 'pt-3',
@@ -480,7 +482,7 @@ export const MOCK_REGULAR_MODULES: RegularModule[] = [
     status: 'locked',
     progress: 0,
     type: 'post-test',
-    rating: 0, reviewsCount: 0, comments: []
+    rating: 0, reviewsCount: 0, date: '02 Feb 2026', comments: [] // ADDED DATE
   },
   
   // Level: Berkembang
@@ -494,7 +496,7 @@ export const MOCK_REGULAR_MODULES: RegularModule[] = [
     type: 'lesson',
     summary: 'Cara membaca neraca dan laporan laba rugi untuk mengambil keputusan strategis bisnis.',
     pdfUrl: '#',
-    rating: 0, reviewsCount: 0, comments: []
+    rating: 0, reviewsCount: 0, date: '01 Mar 2026', comments: [] // ADDED DATE
   },
 ];
 

@@ -4,81 +4,86 @@ import { BookCard } from './BookCard';
 import { 
   Lock, Check, ChevronRight,
   Star, FileText, X, ArrowLeft, 
-  Search, BookOpen, Layers
+  Search, BookOpen, Layers, Trophy, User, Send
 } from 'lucide-react';
 import { RegularModule } from '../types';
 import { Button } from './Button';
 
-// 1. HERO SECTION (UPDATED: White Theme & Scoring Vibe)
+// 1. HERO SECTION (MONOCHROMATIC BLUE GRADIENT)
 const HeroSection: React.FC<{ completed: number; total: number; level: string }> = ({ completed, total, level }) => {
     const progressPercentage = total > 0 ? Math.round((completed / total) * 100) : 0;
 
     return (
         <div className="mb-12 relative">
-             {/* Main Container: Background White, Border & Shadow halus dengan palet #DBEBF6 */}
-            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 overflow-hidden shadow-xl shadow-[#DBEBF6]/60 border border-[#DBEBF6] relative">
+             {/* BG: Solid White */}
+            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 overflow-hidden shadow-xl shadow-slate-200 border border-slate-100 relative">
                 
-                {/* Background Decor: Soft Blobs menggunakan #DBEBF6 */}
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#DBEBF6] pointer-events-none opacity-40 -mt-20 -mr-20 rounded-full blur-[80px]"></div>
-                <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#DBEBF6] pointer-events-none opacity-30 -mb-20 -ml-20 rounded-full blur-[60px]"></div>
+                {/* Decorative Pattern */}
+                <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#F0F9FF] rounded-full blur-[100px] opacity-60 -mt-20 -mr-20 pointer-events-none"></div>
 
                 <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
                     
-                    {/* LEFT SIDE: Teks Kontras di atas Putih */}
+                    {/* LEFT SIDE */}
                     <div className="max-w-2xl flex-1 space-y-6">
-                        {/* Level Badge: Light Blue Background */}
-                        <div className="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 rounded-full bg-[#F0F9FF] border border-[#DBEBF6] text-sm text-[#0857C3] font-bold transition-transform hover:scale-105 cursor-default">
-                            <div className="p-1 bg-[#FFD700] rounded-full shadow-sm"></div>
+                        {/* Badge Level */}
+                        <div className="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 rounded-full bg-white border border-slate-200 text-sm text-slate-600 font-bold shadow-sm cursor-default">
+                            {/* Icon diubah ke Biru agar konsisten 1 warna */}
+                            <div className="p-1.5 bg-[#F97316] rounded-full text-white shadow-sm">
+                                <Trophy className="w-3.5 h-3.5 fill-current" />
+                            </div>
                             <span>Level Saat Ini: <span className="text-[#0857C3] font-black tracking-wide ml-1">{level}</span></span>
                         </div>
 
                         <div>
-                            {/* Headline: Brand Blue */}
-                            <h1 className="text-4xl md:text-5xl font-black text-[#0857C3] leading-tight tracking-tight mb-4">
+                            <h1 className="text-4xl md:text-5xl font-black text-[#1E293B] leading-tight tracking-tight mb-4">
                                 Bangun Fondasi <br className="hidden md:block"/>
-                                Bisnis yang Kuat.
+                                <span className="text-[#0857C3]">Bisnis yang Kuat.</span>
                             </h1>
-                            {/* Subtext: Slate Grey agar rapi */}
                             <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-lg font-medium">
                                 Selesaikan modul pembelajaran terstruktur untuk meningkatkan kompetensi usaha Anda.
                             </p>
                         </div>
+                        
+                        {/* Call to Action: Blue Button */}
+                        <Button className="bg-[#F97316] hover:bg-[#0645A0] text-white rounded-xl px-8 py-4 shadow-lg shadow-blue-200 font-bold text-sm transition-transform active:scale-95">
+                            Lanjutkan Belajar
+                        </Button>
                     </div>
 
-                    {/* RIGHT SIDE: Progress Card (Clean Style) */}
+                    {/* RIGHT SIDE: Progress Card */}
                     <div className="w-full lg:w-auto flex-shrink-0 z-20">
-                        {/* Card Background White/Glassy dengan Border #DBEBF6 */}
-                        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 border border-[#DBEBF6] w-full lg:min-w-[340px] shadow-lg shadow-[#DBEBF6]/40">
+                        <div className="bg-white rounded-3xl p-6 border border-slate-100 w-full lg:min-w-[340px] shadow-2xl shadow-slate-200/50">
                             <div className="flex items-center justify-between mb-5">
                                 <div>
-                                    <h3 className="text-[#0857C3] font-bold text-base mb-0.5 flex items-center gap-2">
+                                    <h3 className="text-slate-800 font-bold text-base mb-0.5 flex items-center gap-2">
                                          Progress Belajar
                                     </h3>
-                                    <p className="text-xs text-slate-400">Penyelesaian</p>
+                                    <p className="text-xs text-slate-400 font-medium">Penyelesaian</p>
                                 </div>
                                 <span className="text-4xl font-black text-[#0857C3]">
                                     {progressPercentage}%
                                 </span>
                             </div>
 
-                            {/* Progress Bar: Base #DBEBF6, Fill #0857C3 */}
-                            <div className="h-3 w-full bg-[#DBEBF6] rounded-full overflow-hidden mb-4 p-0.5">
+                            {/* Progress Bar Gradient 1 Warna (Biru Tua ke Biru Terang) */}
+                            <div className="h-4 w-full bg-slate-100 rounded-full overflow-hidden mb-4 p-1">
                                 <div 
-                                    className="h-full bg-[#0857C3] rounded-full transition-all duration-1000 ease-out relative" 
+                                    className="h-full bg-gradient-to-r from-[#0857C3] to-[#307FE2] rounded-full transition-all duration-1000 ease-out relative shadow-sm" 
                                     style={{ width: `${progressPercentage}%` }}
                                 >
+                                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
                                 </div>
                             </div>
 
-                            {/* Stats: Light Blue Container */}
-                            <div className="flex items-center justify-between text-sm font-medium text-[#0857C3] bg-[#F0F9FF] py-2 px-3 rounded-xl border border-[#DBEBF6]">
+                            {/* Stats Icon & Text jadi Biru (1 Warna) */}
+                            <div className="flex items-center justify-between text-sm font-medium text-slate-600 bg-[#F8FAFC] py-3 px-4 rounded-xl border border-slate-100">
                                 <div className="flex items-center gap-2">
-                                    <div className="w-2 h-2 rounded-full bg-[#307FE2]"></div>
-                                    <span><span className="font-black text-base">{completed}</span> Selesai</span>
+                                    <Check className="w-4 h-4 text-[#0857C3] stroke-[3]" />
+                                    <span><span className="font-black text-[#0857C3] text-lg">{completed}</span> Selesai</span>
                                 </div>
+                                <div className="h-4 w-px bg-slate-200"></div>
                                 <div className="flex items-center gap-2">
-                                     <span className="text-slate-400">dari</span>
-                                    <span><span className="font-black text-base">{total}</span> Modul</span>
+                                    <span><span className="font-black text-slate-800 text-lg">{total}</span> Modul</span>
                                 </div>
                             </div>
                         </div>
@@ -90,43 +95,30 @@ const HeroSection: React.FC<{ completed: number; total: number; level: string }>
     );
 };
 
-// 2. RECOMMENDATION CARD (Disesuaikan sedikit agar senada)
+// 2. RECOMMENDATION CARD
 const RecommendationCard: React.FC<{ title: string; score: number; status: 'PRIORITAS' | 'PENTING' | 'AMAN' }> = ({ title, score, status }) => {
     
+    // Semua status menggunakan warna Biru #307FE2
+    const unifiedBlueConfig = {
+        chipBg: 'bg-[#F0F9FF]', 
+        chipText: 'text-[#307FE2]', 
+        scoreBg: 'bg-[#F0F9FF]', 
+        scoreText: 'text-[#307FE2]',
+        bar: 'bg-[#307FE2]', 
+        btn: 'bg-[#307FE2] hover:bg-[#1E40AF] text-white shadow-blue-100',
+        border: 'border-blue-100'
+    };
+
     const statusConfig = {
-        'PRIORITAS': { 
-            chipBg: 'bg-[#0857C3]/10', 
-            chipText: 'text-[#0857C3]', 
-            scoreBg: 'bg-[#0857C3]', 
-            scoreText: 'text-white',
-            bar: 'bg-[#0857C3]', 
-            btn: 'bg-[#0857C3] hover:bg-[#0645a0] text-white shadow-[#0857C3]/20',
-            border: 'border-[#0857C3]/20'
-        },
-        'PENTING': { 
-            chipBg: 'bg-[#307FE2]/10', 
-            chipText: 'text-[#307FE2]', 
-            scoreBg: 'bg-[#307FE2]', 
-            scoreText: 'text-white',
-            bar: 'bg-[#307FE2]', 
-            btn: 'bg-[#307FE2] hover:bg-[#2565b8] text-white shadow-[#307FE2]/20',
-            border: 'border-[#307FE2]/20'
-        },
-        'AMAN': { 
-            chipBg: 'bg-[#71C5E8]/10', 
-            chipText: 'text-[#71C5E8]', 
-            scoreBg: 'bg-[#71C5E8]', 
-            scoreText: 'text-white',
-            bar: 'bg-[#71C5E8]', 
-            btn: 'bg-white border border-[#71C5E8] text-[#71C5E8] hover:bg-[#F0F9FF] hover:border-[#307FE2]',
-            border: 'border-[#71C5E8]/20'
-        },
+        'PRIORITAS': unifiedBlueConfig,
+        'PENTING': unifiedBlueConfig,
+        'AMAN': unifiedBlueConfig,
     };
 
     const config = statusConfig[status];
 
     return (
-        <div className={`bg-white rounded-2xl p-5 border shadow-sm mb-4 transition-all hover:shadow-md ${config.border}`}>
+        <div className={`bg-white rounded-2xl p-5 border shadow-sm mb-4 transition-all hover:shadow-md hover:-translate-y-0.5 duration-300 ${config.border}`}>
             <div className="flex justify-between items-start mb-4">
                 <div>
                     <h4 className="font-bold text-slate-800 text-sm mb-2 leading-tight">{title}</h4>
@@ -134,23 +126,23 @@ const RecommendationCard: React.FC<{ title: string; score: number; status: 'PRIO
                         {status}
                     </span>
                 </div>
-                <div className={`w-9 h-9 rounded-xl flex items-center justify-center text-xs font-black shadow-sm ${config.scoreBg} ${config.scoreText}`}>
+                <div className={`px-2.5 py-1 rounded-md flex items-center justify-center text-[10px] font-extrabold shadow-sm ${config.scoreBg} ${config.scoreText}`}>
                     {score}
                 </div>
             </div>
 
             <div className="space-y-3">
-                <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider">
-                    <span className="text-slate-400">Saat ini</span>
-                    <span className={config.chipText}>Target : 5.0</span>
+                <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                    <span>Saat ini</span>
+                    <span>Target : 5.0</span>
                 </div>
                 
                 <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
                     <div className={`h-full rounded-full transition-all duration-1000 ${config.bar}`} style={{width: `${(score/5)*100}%`}}></div>
                 </div>
                 
-                <button className={`w-full py-3 rounded-xl text-xs font-bold transition-all mt-2 ${config.btn}`}>
-                    {status === 'AMAN' ? 'Lihat Detail' : 'Pelajari Sekarang'}
+                <button className={`w-full py-3 rounded-xl text-xs font-bold transition-all mt-2 shadow-sm ${config.btn}`}>
+                    Pelajari Sekarang
                 </button>
             </div>
         </div>
@@ -173,10 +165,10 @@ const CategoryTimelineItem: React.FC<{
 
     return (
         <div className="relative grid grid-cols-[1fr_auto_1fr] gap-4 md:gap-10 items-center mb-8 group">
-            {!isLast && <div className="absolute left-1/2 -translate-x-1/2 top-6 bottom-[-40px] w-[2px] bg-slate-100 -z-10"></div>}
+            {!isLast && <div className="absolute left-1/2 -translate-x-1/2 top-6 bottom-[-40px] w-[2px] bg-slate-200 -z-10"></div>}
             
             <div className="text-right py-2">
-                <h4 className={`font-bold text-sm md:text-base leading-tight mb-1 ${isLocked ? 'text-slate-400' : 'text-slate-800'}`}>
+                <h4 className={`font-bold text-sm md:text-base leading-tight mb-1 transition-colors ${isLocked ? 'text-slate-400' : 'text-slate-800 group-hover:text-[#0857C3]'}`}>
                     {categoryName}
                 </h4>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
@@ -184,37 +176,54 @@ const CategoryTimelineItem: React.FC<{
                 </span>
             </div>
 
+            {/* CENTER ICON */}
             <div className="flex justify-center relative">
                 <div 
                     onClick={!isLocked ? onClick : undefined}
                     className={`
-                        w-14 h-14 rounded-2xl flex items-center justify-center border-4 relative z-10 transition-all cursor-pointer shadow-sm transform hover:scale-110
+                        w-14 h-14 rounded-2xl flex items-center justify-center border-4 relative z-10 transition-all duration-300 cursor-pointer shadow-sm transform group-hover:scale-110
                         ${isCompleted 
                             ? 'bg-[#F97316] border-[#F97316] text-white shadow-orange-200' 
                             : isLocked 
                                 ? 'bg-slate-50 border-slate-200 text-slate-300'
-                                : 'bg-white border-[#307FE2] text-[#307FE2] ring-4 ring-[#307FE2]/10'}
+                                : 'bg-white border-[#307FE2] text-[#307FE2] ring-4 ring-[#307FE2]/5 group-hover:ring-[#307FE2]/20'}
                     `}
                 >
                     {isCompleted ? <Check className="w-6 h-6 stroke-[3]" /> : isLocked ? <Lock className="w-5 h-5" /> : <Layers className="w-6 h-6" />}
                 </div>
             </div>
 
+            {/* RIGHT SIDE (ACTION & PROGRESS) */}
             <div className="text-left w-full max-w-[140px]">
                 {isLocked ? (
-                    <div className="inline-flex items-center gap-2 text-[10px] font-bold text-slate-400 bg-slate-50 px-3 py-2 rounded-lg border border-slate-100">
+                    <div className="inline-flex items-center gap-2 text-[10px] font-bold text-slate-400 bg-slate-100 px-3 py-2 rounded-lg border border-slate-200">
                         <Lock className="w-3 h-3" /> Terkunci
                     </div>
                 ) : (
                     <div className="space-y-2">
                         <button 
                             onClick={onClick}
-                            className="w-full flex items-center justify-between px-4 py-2.5 bg-white border border-[#307FE2] text-[#307FE2] rounded-xl text-xs font-bold hover:bg-[#307FE2] hover:text-white transition-all shadow-sm group-hover:shadow-md"
+                            className={`w-full flex items-center justify-between px-4 py-2.5 bg-white border rounded-xl text-xs font-bold transition-all shadow-sm group-hover:shadow-md
+                             ${isCompleted 
+                                ? 'border-[#F97316] text-[#F97316] hover:bg-[#F97316] hover:text-white' 
+                                : 'border-[#307FE2] text-[#307FE2] hover:bg-[#307FE2] hover:text-white'}
+                            `}
                         >
-                            Lihat Modul <ChevronRight className="w-3.5 h-3.5" />
+                            {isCompleted ? 'Ulangi Materi' : 'Lihat Modul'} <ChevronRight className="w-3.5 h-3.5" />
                         </button>
-                        <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
-                            <div className="h-full bg-[#307FE2] transition-all duration-500" style={{width: `${progressPercent}%`}}></div>
+                        
+                        <div className="space-y-1">
+                            <div className="flex justify-between items-center text-[10px] font-bold text-slate-400 px-1">
+                                <span>Progress</span>
+                                <span className={isCompleted ? "text-[#F97316]" : "text-[#307FE2]"}>{Math.round(progressPercent)}%</span>
+                            </div>
+                            
+                            <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                                <div 
+                                    className={`h-full rounded-full transition-all duration-500 ${isCompleted ? 'bg-[#F97316]' : 'bg-[#F97316]'}`} 
+                                    style={{width: `${progressPercent}%`}}
+                                ></div>
+                            </div>
                         </div>
                     </div>
                 )}
@@ -223,14 +232,13 @@ const CategoryTimelineItem: React.FC<{
     );
 };
 
-// --- MAIN COMPONENT ---
-
 export const RegularModules: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [selectedModule, setSelectedModule] = useState<RegularModule | null>(null);
     const [activeTab, setActiveTab] = useState<'summary' | 'pdf'>('summary');
     const [newComment, setNewComment] = useState('');
     const [userRating, setUserRating] = useState(0);
+    const [hoverRating, setHoverRating] = useState(0); // STATE BARU: Untuk efek hover bintang
 
     const learningPath = useMemo(() => {
         const levels = ['Tradisional', 'Tradisional Utama', 'Tradisional Teladan', 'Berkembang'];
@@ -251,10 +259,20 @@ export const RegularModules: React.FC = () => {
     const totalModules = MOCK_REGULAR_MODULES.length;
     const completedCount = MOCK_REGULAR_MODULES.filter(m => m.status === 'completed').length;
 
+    // Label Rating
+    const ratingLabels = [
+        "Pilih Rating", 
+        "Sangat Kurang", 
+        "Kurang", 
+        "Cukup", 
+        "Sangat Baik", 
+        "Luar Biasa!"
+    ];
+
     const recommendations = [
         { title: 'Manajemen Operasional', score: 0, status: 'PRIORITAS' as const },
         { title: 'Skala Usaha', score: 2.0, status: 'PRIORITAS' as const },
-        { title: 'Manajemen Pemasaran', score: 2.8, status: 'PRIORITAS' as const },
+        { title: 'Manajemen Pemasaran', score: 2.8, status: 'PENTING' as const },
     ];
 
     const activeCategoryModules = selectedCategory 
@@ -269,6 +287,9 @@ export const RegularModules: React.FC = () => {
     const handleModuleClick = (module: RegularModule) => {
         setSelectedModule(module);
         setActiveTab('summary');
+        setUserRating(0); // Reset rating
+        setHoverRating(0);
+        setNewComment('');
     };
 
     const handleBackToGrid = () => setSelectedModule(null);
@@ -279,9 +300,9 @@ export const RegularModules: React.FC = () => {
 
     const handlePostComment = () => {
         if (!newComment.trim() || !selectedModule) return;
-        selectedModule.comments.unshift({ id: Date.now().toString(), user: 'Anda', avatar: 'U', date: 'Baru saja', text: newComment, rating: userRating });
+        selectedModule.comments.unshift({ id: Date.now().toString(), user: 'Anda', avatar: 'A', date: 'Baru saja', text: newComment, rating: userRating });
         selectedModule.reviewsCount += 1;
-        setNewComment(''); setUserRating(0);
+        setNewComment(''); setUserRating(0); setHoverRating(0);
     };
 
     return (
@@ -295,7 +316,7 @@ export const RegularModules: React.FC = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                 
-                <div className="lg:col-span-8 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 shadow-xl shadow-slate-200/50 min-h-[600px] relative overflow-hidden">
+                <div className="lg:col-span-8 bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-200 shadow-xl shadow-slate-200/50 min-h-[600px] relative overflow-hidden">
                     <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-slate-50 -z-10"></div>
                     
                     {learningPath.map((lvlGroup, lvlIdx) => {
@@ -304,7 +325,7 @@ export const RegularModules: React.FC = () => {
                         return (
                             <div key={lvlGroup.levelName} className="mb-16 last:mb-0">
                                 <div className="flex justify-center mb-12 relative z-10">
-                                    <span className={`px-6 py-2 rounded-full text-xs font-extrabold uppercase tracking-widest border shadow-sm ${lvlIdx === 0 ? 'bg-[#F0F9FF] text-[#0857C3] border-[#BAE6FD]' : 'bg-slate-50 text-slate-400 border-slate-200'}`}>
+                                    <span className={`px-6 py-2 rounded-full text-xs font-extrabold uppercase tracking-widest border shadow-sm ${lvlIdx === 0 ? 'bg-white text-[#0857C3] border-slate-200' : 'bg-slate-50 text-slate-400 border-slate-200'}`}>
                                         {lvlGroup.levelName}
                                     </span>
                                 </div>
@@ -326,8 +347,13 @@ export const RegularModules: React.FC = () => {
                 </div>
 
                 <div className="lg:col-span-4 space-y-8 sticky top-24">
-                    <div className="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-lg shadow-slate-200/50">
-                        <div className="mb-6"><h3 className="font-bold text-slate-800 text-lg mb-1">Rekomendasi Modul</h3><p className="text-xs text-slate-400 font-medium">Berdasarkan hasil skoring terendah Anda</p></div>
+                    <div className="bg-white rounded-[2rem] p-6 border border-slate-200 shadow-lg shadow-slate-200/50">
+                        <div className="mb-6 flex items-center gap-2">
+                             <div>
+                                <h3 className="font-bold text-slate-800 text-lg mb-2 leading-none">Rekomendasi Modul</h3>
+                                <p className="text-xs text-slate-400 font-medium">Berdasarkan hasil skoring terendah Anda</p>
+                             </div>
+                        </div>
                         {recommendations.map((rec, idx) => <RecommendationCard key={idx} {...rec} />)}
                     </div>
                 </div>
@@ -339,12 +365,20 @@ export const RegularModules: React.FC = () => {
                         
                         {selectedModule ? (
                             <div className="flex flex-col h-full overflow-hidden bg-white">
+                                {/* MODAL HEADER */}
                                 <div className="p-5 md:p-8 border-b border-slate-100 flex justify-between items-start shrink-0 bg-white/90 backdrop-blur-md z-20 sticky top-0">
                                     <div className="flex gap-4 items-center">
                                         <button onClick={handleBackToGrid} className="p-2 -ml-2 rounded-full hover:bg-slate-100 text-slate-500 hover:text-[#0857C3] transition-colors"><ArrowLeft className="w-6 h-6" /></button>
                                         <div className="h-8 w-[1px] bg-slate-200 mx-1"></div>
                                         <div>
-                                            <div className="text-[10px] font-bold text-[#307FE2] uppercase tracking-widest mb-0.5">{selectedModule.category}</div>
+                                            <div className="flex items-center gap-3">
+                                                <div className="text-[10px] font-bold text-[#307FE2] uppercase tracking-widest mb-0.5">{selectedModule.category}</div>
+                                                <div className="flex items-center gap-1">
+                                                    <Star className="w-3 h-3 text-orange-400 fill-orange-400" />
+                                                    <span className="text-[10px] font-bold text-slate-700">{selectedModule.rating}</span>
+                                                    <span className="text-[10px] text-slate-400">({selectedModule.reviewsCount} Ulasan)</span>
+                                                </div>
+                                            </div>
                                             <h2 className="text-lg font-black text-slate-900 leading-tight line-clamp-1">{selectedModule.title}</h2>
                                         </div>
                                     </div>
@@ -371,16 +405,127 @@ export const RegularModules: React.FC = () => {
                                                     <h3 className="text-2xl font-bold text-[#0857C3] mb-4">Tentang Modul Ini</h3>
                                                     <p className="leading-relaxed">{selectedModule.summary || "Pelajari strategi praktis yang dapat langsung diterapkan pada operasional bisnis Anda."}</p>
                                                 </div>
-                                                <div className="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-6 md:p-8">
-                                                    <h4 className="font-bold text-slate-800 mb-4 flex items-center gap-2"><Star className="w-5 h-5 text-orange-400 fill-current"/> Beri Penilaian</h4>
-                                                    <div className="flex flex-col gap-4">
-                                                        <div className="flex gap-2">
-                                                            {[1,2,3,4,5].map(s => <button key={s} onClick={() => setUserRating(s)} className="focus:outline-none hover:scale-110 transition-transform"><Star className={`w-8 h-8 ${userRating >= s ? 'text-orange-400 fill-current' : 'text-slate-300'}`} /></button>)}
+                                                
+                                                {/* UPDATE IMPROVED: INPUT KOMENTAR & RATING */}
+                                                <div className="bg-white border border-slate-200 rounded-[2rem] p-8 md:p-10 my-10 shadow-xl shadow-slate-100 relative overflow-hidden">
+                                                    {/* Decorative Blob */}
+                                                    <div className="absolute -top-10 -right-10 w-40 h-40 bg-orange-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+                                                    
+                                                    <div className="relative z-9">
+                                                        <div className="text-center mb-8">
+                                                            <h4 className="font-black text-slate-900 text-2xl mb-2 tracking-tight">Apa pendapat Anda?</h4>
+                                                            <p className="text-slate-500 text-sm font-medium">Rating Anda sangat berarti untuk pengembangan modul ini.</p>
                                                         </div>
-                                                        <textarea value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Apa pendapat Anda?" className="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#307FE2] outline-none text-sm min-h-[100px]" />
-                                                        <div className="flex justify-end"><Button size="sm" onClick={handlePostComment} disabled={!newComment}>Kirim</Button></div>
+                                                        
+                                                        <div className="flex flex-col gap-8 items-center max-w-xl mx-auto">
+                                                            
+                                                            {/* Interactive Stars Section */}
+                                                            <div className="flex flex-col items-center gap-3">
+                                                                <div className="flex gap-2 p-3 bg-slate-50 rounded-2xl border border-slate-100">
+                                                                    {[1,2,3,4,5].map(s => (
+                                                                        <button 
+                                                                            key={s} 
+                                                                            onClick={() => setUserRating(s)} 
+                                                                            onMouseEnter={() => setHoverRating(s)}
+                                                                            onMouseLeave={() => setHoverRating(0)}
+                                                                            className="focus:outline-none transition-transform duration-200 hover:scale-110 active:scale-95 p-1"
+                                                                        >
+                                                                            <Star 
+                                                                                className={`w-10 h-10 transition-colors duration-200 ${
+                                                                                    (hoverRating || userRating) >= s 
+                                                                                        ? 'text-orange-400 fill-orange-400 drop-shadow-md' 
+                                                                                        : 'text-slate-300 fill-slate-100'
+                                                                                }`} 
+                                                                                strokeWidth={1.5} 
+                                                                            />
+                                                                        </button>
+                                                                    ))}
+                                                                </div>
+                                                                {/* Dynamic Label */}
+                                                                <span className={`text-sm font-bold transition-all duration-300 ${userRating > 0 ? 'text-orange-500 scale-100 opacity-100' : 'text-slate-300 scale-90 opacity-0 h-0'}`}>
+                                                                    {ratingLabels[userRating]}
+                                                                </span>
+                                                            </div>
+
+                                                            {/* Textarea Improved */}
+                                                            <div className="w-full relative group">
+                                                                <textarea 
+                                                                    value={newComment} 
+                                                                    onChange={(e) => setNewComment(e.target.value)} 
+                                                                    placeholder="Bagikan pengalaman belajar Anda secara detail..." 
+                                                                    className="w-full p-6 rounded-3xl border-2 border-slate-100 bg-slate-50/50 focus:bg-white focus:border-blue-200 focus:ring-4 focus:ring-blue-50/50 outline-none transition-all text-slate-700 font-medium placeholder:text-slate-400 leading-relaxed min-h-[160px] resize-none"
+                                                                />
+                                                                <div className="absolute bottom-4 right-4 text-[10px] font-bold text-slate-300 bg-white px-2 py-1 rounded-md border border-slate-100">
+                                                                    {newComment.length} karakter
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="w-full">
+                                                                <Button 
+                                                                    size="lg" 
+                                                                    onClick={handlePostComment} 
+                                                                    disabled={!newComment || userRating === 0} 
+                                                                    className={`w-full py-4 rounded-2xl font-bold text-base shadow-xl transition-all ${
+                                                                        !newComment || userRating === 0 
+                                                                            ? 'bg-slate-100 text-slate-300 shadow-none cursor-not-allowed' 
+                                                                            : 'bg-[#307FE2] hover:bg-[#2563EB] text-white shadow-blue-200 hover:-translate-y-1'
+                                                                    }`}
+                                                                >
+                                                                    <span className="flex items-center justify-center gap-2">
+                                                                        Kirim Ulasan <Send className="w-4 h-4" />
+                                                                    </span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+
+                                                {/* DAFTAR KOMENTAR */}
+                                                {selectedModule.comments && selectedModule.comments.length > 0 && (
+                                                    <div className="pt-8 border-t border-slate-100">
+                                                        <h4 className="font-bold text-slate-800 mb-8 flex items-center gap-2 text-lg">
+                                                            Ulasan Pengguna <span className="text-slate-400 text-sm font-normal">({selectedModule.comments.length})</span>
+                                                        </h4>
+                                                        
+                                                        {/* GRID LAYOUT UNTUK KOMENTAR */}
+                                                        <div className="grid gap-5">
+                                                            {selectedModule.comments.map((comment, i) => (
+                                                                <div key={i} className="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-md transition-all duration-300 flex gap-5 group animate-in fade-in slide-in-from-bottom-2">
+                                                                    {/* Avatar Area */}
+                                                                    <div className="shrink-0">
+                                                                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 flex items-center justify-center text-[#307FE2] font-black text-lg shadow-sm">
+                                                                            {comment.avatar ? comment.avatar : (comment.user ? comment.user.charAt(0).toUpperCase() : <User className="w-5 h-5" />)}
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    {/* Content Area */}
+                                                                    <div className="flex-1">
+                                                                        <div className="flex justify-between items-start mb-2">
+                                                                            <div>
+                                                                                <h5 className="font-bold text-slate-900 text-sm leading-tight mb-1">{comment.user}</h5>
+                                                                                {/* Stars Row */}
+                                                                                <div className="flex items-center gap-0.5">
+                                                                                    {[...Array(5)].map((_, starIdx) => (
+                                                                                        <Star 
+                                                                                            key={starIdx} 
+                                                                                            className={`w-3.5 h-3.5 ${starIdx < comment.rating ? 'fill-orange-400 text-orange-400' : 'fill-slate-200 text-slate-200'}`} 
+                                                                                        />
+                                                                                    ))}
+                                                                                </div>
+                                                                            </div>
+                                                                            {/* Date Badge */}
+                                                                            <span className="text-[10px] font-bold text-slate-400 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-100 whitespace-nowrap">
+                                                                                {comment.date}
+                                                                            </span>
+                                                                        </div>
+                                                                        
+                                                                        <p className="text-slate-600 text-sm leading-relaxed tracking-wide font-medium">{comment.text}</p>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
                                         ) : (
                                             <div className="h-[50vh] flex flex-col justify-center items-center text-center p-10 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
@@ -395,6 +540,7 @@ export const RegularModules: React.FC = () => {
                         ) : (
                             
                             <div className="flex flex-col h-full relative overflow-hidden bg-[#F1F5F9]">
+                                {/* CATALOG HEADER */}
                                 <div className="relative bg-[#0857C3] p-8 md:p-10 shrink-0 overflow-hidden shadow-md z-10">
                                     <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
                                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#307FE2]/30 rounded-full blur-3xl -ml-20 -mb-20"></div>

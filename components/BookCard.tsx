@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bookmark, BarChart3, Users, Target } from 'lucide-react';
+import { Bookmark, Star, Calendar } from 'lucide-react'; // Tambah icon Calendar
 import { RegularModule } from '../types';
 
 interface BookCardProps {
@@ -78,19 +78,27 @@ export const BookCard: React.FC<BookCardProps> = ({ book, onClick, index = 0 }) 
       {/* --- FOOTER SECTION (Details) --- */}
       <div className="p-4 flex flex-col justify-between flex-1 bg-white relative">
         <div className="mb-4">
-           {/* Judul ulang di footer untuk kejelasan jika cover text terpotong */}
            <h3 className="text-xs font-bold text-slate-700 leading-snug line-clamp-2 group-hover:text-[#0857C3] transition-colors">
              {book.title}
            </h3>
         </div>
         
+        {/* UPDATE: Tanggal Ditambahkan di Sebelah Rating */}
         <div className="flex items-center justify-between pt-3 border-t border-slate-50 mt-auto">
-            <span className="text-[10px] text-slate-400 font-medium flex items-center gap-1">
-                14 Juli 2025
-            </span>
-            <span className="text-[10px] font-bold text-[#307FE2] group-hover:translate-x-1 transition-transform">
-                Lihat Modul &rarr;
-            </span>
+            
+            {/* KIRI: RATING */}
+            <div className="flex items-center gap-1.5">
+                <Star className="w-3.5 h-3.5 text-orange-400 fill-orange-400" />
+                <span className="text-[11px] font-bold text-slate-700">{book.rating}</span>
+                <span className="text-[10px] text-slate-400">({book.reviewsCount})</span>
+            </div>
+
+            {/* KANAN: TANGGAL */}
+            <div className="flex items-center gap-1.5 text-slate-400">
+                <Calendar className="w-3 h-3" />
+                <span className="text-[10px] font-bold">{book.date}</span>
+            </div>
+            
         </div>
       </div>
     </div>

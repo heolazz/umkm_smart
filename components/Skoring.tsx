@@ -42,7 +42,7 @@ const SegmentIllustration = ({ segmentId, mobile = false }: { segmentId: number,
       );
     }
     return (
-      <div className="relative w-48 h-48 flex items-center justify-center mx-auto mb-6 bg-white/50 rounded-full shadow-inner border border-white/60 backdrop-blur-sm p-4">
+      <div className="relative w-48 h-48 flex items-center justify-center mx-auto mb-6">
         {children}
       </div>
     );
@@ -54,7 +54,7 @@ const SegmentIllustration = ({ segmentId, mobile = false }: { segmentId: number,
         src={iconSrc} 
         alt={`Ilustrasi Segmen ${segmentId}`}
         className={`object-contain transition-all duration-300 hover:scale-105 
-          ${mobile ? 'w-full h-full' : 'w-32 h-32'} 
+          ${mobile ? 'w-full h-full' : 'w-48 h-48'} 
         `}
         onError={(e) => {
           // Sembunyikan gambar jika file tidak ditemukan agar tidak terlihat icon 'broken image'
@@ -149,38 +149,44 @@ export const Skoring: React.FC<SkoringProps> = ({ onComplete }) => {
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
       
         {/* --- PANEL KIRI (DESKTOP SIDEBAR) --- */}
-        <div className="hidden md:flex w-[400px] lg:w-[450px] bg-[#F0F9FF] flex-col relative shrink-0 border-r border-[#E0F2FE]">
+        <div className="hidden md:flex w-[400px] lg:w-[450px] bg-gradient-to-b from-[#DEF1FE] to-white flex-col relative shrink-0 border-r border-[#E0F2FE]">
             <div className="p-8 flex flex-col h-full relative z-10">
-                <button onClick={() => navigate('modul-reguler')} className="w-fit flex items-center gap-2 text-[#0857C3] font-bold text-sm mb-8 hover:opacity-80">
-                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
-                        <ArrowLeft className="w-4 h-4" />
-                    </div>
-                    Kembali
-                </button>
+                
+                {/* --- HEADER BARU: BACK BUTTON & SEGMEN BADGE SEJAJAR --- */}
+                <div className="flex items-center justify-between mb-8">
+                    {/* 1. Tombol Back */}
+                    <button onClick={() => navigate('modul-reguler')} className="flex items-center gap-2 text-[#0857C3] font-bold text-sm hover:opacity-80 transition-opacity">
+                        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
+                            <ArrowLeft className="w-4 h-4" />
+                        </div>
+                    </button>
 
-                <div className="flex-1 flex flex-col justify-center text-center -mt-10">
-                    <div className="mx-auto mb-6">
-                        <span className="bg-white px-4 py-1.5 rounded-full text-[#307FE2] text-xs font-bold uppercase tracking-widest shadow-sm border border-blue-100">
-                            SEGMEN {currentSegment.id} / {SEGMENTS.length}
-                        </span>
-                    </div>
+                    {/* 2. Badge Segmen */}
+                    <span className="bg-white px-4 py-1.5 rounded-full text-[#307FE2] text-xs font-bold uppercase tracking-widest shadow-sm border border-blue-100">
+                        SEGMEN {currentSegment.id} / {SEGMENTS.length}
+                    </span>
+                </div>
 
+                {/* --- CONTENT UTAMA (Tengah) --- */}
+                <div className="flex-1 flex flex-col justify-end text-center mb-4">
+                    
                     {/* Ilustrasi Dinamis dari Vector */}
                     <SegmentIllustration segmentId={currentSegment.id} />
 
-                    <h2 className="text-3xl font-black text-[#0857C3] tracking-tight mb-4">
+                    <h2 className="text-3xl font-bold text-[#0857C3] tracking-tight mb-4">
                         {currentSegment.name}
                     </h2>
                     
                     {/* --- WARNING BOX DESKTOP --- */}
                     <div className="bg-[#FFF7ED] border border-[#FFEDD5] rounded-xl p-4 flex items-start gap-3 text-left w-full shadow-sm max-w-sm mx-auto">
-                        <AlertCircle className="w-5 h-5 text-[#F97316] shrink-0 mt-0.5" />
-                        <p className="text-sm font-medium leading-relaxed text-[#3F5775]">
+                        <AlertCircle className="w-4 h-4 text-[#F97316] shrink-0 mt-0.5" />
+                        <p className="text-[13px] font-bold leading-relaxed text-[#3F5775]">
                             Jawablah sesuai kondisi <span className="font-bold text-[#F97316]">realita usaha Anda saat ini.</span>
                         </p>
                     </div>
                 </div>
 
+                {/* --- PROGRESS BAR (Bawah) --- */}
                 <div className="w-full pt-6">
                     <div className="flex justify-between text-xs font-bold text-[#307FE2] mb-2 uppercase tracking-wide">
                         <span>Total Progres</span>
@@ -198,40 +204,43 @@ export const Skoring: React.FC<SkoringProps> = ({ onComplete }) => {
             
             <div ref={scrollContainerRef} className="flex-1 overflow-y-auto custom-scrollbar pb-32 md:pb-24 scroll-smooth">
                 
-                {/* --- MOBILE INTRO (Sticky Header like) --- */}
-                <div className="md:hidden bg-[#F5FAFF] px-5 py-6 border-b border-[#E0F2FE]">
+                {/* --- MOBILE INTRO & STICKY PROGRESS --- */}
+                
+                {/* 1. BAGIAN INFO (Akan ikut ter-scroll ke atas) */}
+                <div className="md:hidden bg-gradient-to-b from-[#DEF1FE] to-white px-5 pt-6 pb-2">
                     <div className="flex justify-between items-center mb-4">
                         <div className="flex-1 pr-4">
-                             <div className="inline-block px-2.5 py-1 bg-white text-[#307FE2] border border-blue-100 rounded-md text-[10px] font-bold uppercase tracking-widest mb-2 shadow-sm">
+                             <div className="inline-block px-2.5 py-1 bg-white text-[#307FE2] border border-blue-100 rounded-xl text-[10px] font-bold uppercase tracking-widest mb-2 shadow-sm">
                                 SEGMEN {currentSegment.id}/{SEGMENTS.length}
                              </div>
-                             <h2 className="text-xl font-black text-[#0857C3] leading-tight">
+                             <h2 className="text-xl font-bold text-[#0857C3] leading-tight">
                                 {currentSegment.name}
                              </h2>
                         </div>
                         {/* Ilustrasi Mobile */}
-                        <div className="shrink-0 bg-white p-2 rounded-xl shadow-sm border border-blue-50">
+                        <div className="shrink-0 p-2">
                              <SegmentIllustration segmentId={currentSegment.id} mobile />
                         </div>
                     </div>
                     
-                    {/* --- WARNING BOX MOBILE --- */}
-                    <div className="bg-[#FFF7ED] border border-[#FFEDD5] rounded-lg p-3 flex gap-2.5 mb-4">
+                    {/* Warning Box Mobile */}
+                    <div className="bg-[#FFF7ED] border border-[#FFEDD5] rounded-lg p-3 flex gap-2.5 mb-2">
                         <AlertCircle className="w-4 h-4 text-[#F97316] shrink-0 mt-0.5" />
-                        <p className="text-xs font-medium leading-relaxed text-[#3F5775]">
+                        <p className="text-xs font-bold leading-relaxed text-[#3F5775]">
                             Jawablah sesuai kondisi <span className="font-bold text-[#F97316]">realita usaha Anda saat ini.</span>
                         </p>
                     </div>
+                </div>
 
-                    <div className="mb-2">
-                         <div className="flex justify-between items-center mb-1.5">
-                            <span className="text-[10px] font-bold text-[#307FE2] uppercase">PROGRES ASESMEN</span>
-                            <span className="text-xs font-extrabold text-[#307FE2]">{progress}%</span>
-                         </div>
-                         <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-                            <div className="h-full bg-[#0857C3] rounded-full transition-all duration-500" style={{width: `${progress}%`}}></div>
-                         </div>
-                    </div>
+                {/* 2. BAGIAN PROGRESS BAR (Sticky & Background White) */}
+                <div className="md:hidden sticky top-0 z-30 bg-white px-5 py-6">
+                     <div className="flex justify-between items-center mb-1.5">
+                        <span className="text-[10px] font-bold text-[#307FE2] uppercase">PROGRES ASESMEN</span>
+                        <span className="text-xs font-extrabold text-[#307FE2]">{progress}%</span>
+                     </div>
+                     <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-[#0857C3] rounded-full transition-all duration-500" style={{width: `${progress}%`}}></div>
+                     </div>
                 </div>
 
                 {/* --- LOOP PERTANYAAN (MAPPING) --- */}
@@ -314,7 +323,7 @@ export const Skoring: React.FC<SkoringProps> = ({ onComplete }) => {
                     `}
                 >
                     <ArrowLeft className="w-5 h-5"/> 
-                    <span>Kembali</span>
+                    <span>Sebelumnya</span>
                 </button>
 
                 <Button 

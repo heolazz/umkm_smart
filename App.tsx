@@ -3,6 +3,7 @@ import { Skoring } from './components/Skoring';
 import { SkoringResult } from './components/SkoringResult';
 import { RegularModules } from './components/RegularModules';
 import { ThematicModules } from './components/ThematicModules';
+import { Analytics } from '@vercel/analytics/react';
 import { 
   CheckSquare, 
   Book, 
@@ -65,6 +66,7 @@ const App: React.FC = () => {
 
   return (
     <RouterContext.Provider value={{ currentRoute, navigate }}>
+      <Analytics />
       {/* Background Page: Slate Abu Gelap (#F1F5F9) sesuai request */}
       <div className="min-h-screen bg-[#F1F5F9] flex flex-col font-sans text-[#0857C3] selection:bg-[#F97316] selection:text-white">
         
